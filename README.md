@@ -3,4 +3,6 @@ Encrypted solutions to Euler Project problems. Solutions are encrytped with thei
 
 Files are encrypted with openssl aes-128-cbc.
 To decrypt, put a file called answers.txt in the top level direcotry with the answer for each problem on its respective line.
+Or just decrypt with the answer as the passphrase.
+
 Runing the encrypt script will delete the original source so watch out!
