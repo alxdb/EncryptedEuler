@@ -6,3 +6,5 @@ To decrypt, put a file called answers.txt in the top level directory with the an
 Or just decrypt normally with the answer as the passphrase.
 
 Runing the encrypt script will delete the original source so make backups!
+
+Borked...
