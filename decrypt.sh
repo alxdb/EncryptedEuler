@@ -1,32 +1,24 @@
-# decrypt C
-cd C
-i=0
-for file in *.c.enc; do
-	i=$((i + 1))
-	export PASS=$(sed $i'!d' ../answers.txt)
-	openssl aes-128-cbc -d -in ${file} -out ${file%.enc} -pass env:PASS
-	echo "decrypted ${file}"
-done
-cd ..
+decrypt () {
+	i=1
+	for file in $1/*.$2.enc; do
+		export PASS=$(sed $i'!d' answers.txt)
+		if [ -z $PASS ]; then
+			echo "no more answers"
+			return 0
+		else
+			echo "decrypting $file with $PASS"
+		fi
+		openssl aes-128-cbc -md md5 -d -in $file -out ${file%.enc} -pass env:PASS 2>/dev/null
+		if [ $? -ne 0 ]; then
+			echo "decryption failed"
+			return 1
+		else
+			echo "decrypted $file"
+		fi
+		i=$((i + 1))
+	done
+}
 
-# decrypt Python
-cd Python
-i=0
-for file in *.py.enc; do
-	i=$((i + 1))
-	export PASS=$(sed $i'!d' ../answers.txt)
-	openssl aes-128-cbc -d -in ${file} -out ${file%.enc} -pass env:PASS
-	echo "decrypted ${file}"
-done
-cd ..
-
-# decrypt Haskell
-cd Haskell
-i=0
-for file in *.hs.enc; do
-	i=$((i + 1))
-	export PASS=$(sed $i'!d' ../answers.txt)
-	openssl aes-128-cbc -d -in ${file} -out ${file%.enc} -pass env:PASS
-	echo "decrypted ${file}"
-done
-cd ..
+decrypt C c
+decrypt Python py
+decrypt Haskell hs
