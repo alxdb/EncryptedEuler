@@ -5,7 +5,7 @@ all : $(exe)
 
 bin/% : %.c
 	mkdir -p bin
-	cc $< -o $@
+	$(CC) -lm $< -o $@
 
 clean :
 	rm -f $(exe)
