@@ -1,5 +1,5 @@
 # EncryptedEuler
-Encrypted solutions to Euler Project problems. Solutions are encrytped with their answers.
+Encrypted solutions to Euler Project problems. Solutions are encrypted with their answers.
 
 Files are encrypted with openssl aes-128-cbc.
 To decrypt, put a file called answers.txt in the top level directory with the answer for each problem on its respective line.
